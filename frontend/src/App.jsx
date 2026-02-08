@@ -28,7 +28,7 @@ function App() {
 
   // ================= GOOGLE LOGIN =================
   const handleGoogleLogin = async (credentialResponse) => {
-    const res = await fetch("http://localhost:3000/api/auth/google", {
+    const res = await fetch("https://collegecanteen-mgm-1.onrender.com/api/auth/google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token: credentialResponse.credential }),
@@ -38,7 +38,7 @@ function App() {
     setUser(data.user);
 
     if (data.user.role === "user") {
-      const c = await fetch("http://localhost:3000/api/canteens");
+      const c = await fetch("https://collegecanteen-mgm-1.onrender.com/api/canteens");
       setCanteens(await c.json());
     }
   };
@@ -46,13 +46,13 @@ function App() {
   // ================= STAFF =================
   const loadStaffOrders = async () => {
     const res = await fetch(
-      `http://localhost:3000/api/staff/orders/${user.canteen_id}`
+      `https://collegecanteen-mgm-1.onrender.com/api/staff/orders/${user.canteen_id}`
     );
     setStaffOrders(await res.json());
   };
 
   const updateOrderStatus = async (id, status) => {
-    await fetch(`http://localhost:3000/api/staff/orders/${id}`, {
+    await fetch(`https://collegecanteen-mgm-1.onrender.com/api/staff/orders/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
@@ -68,7 +68,7 @@ function App() {
   const loadMenu = async (canteen) => {
     setSelectedCanteen(canteen);
     setCart([]);
-    const res = await fetch(`http://localhost:3000/api/menu/${canteen.id}`);
+    const res = await fetch(`https://collegecanteen-mgm-1.onrender.com/api/menu/${canteen.id}`);
     setMenu(await res.json());
   };
 
@@ -91,7 +91,7 @@ function App() {
   );
 
   const placeOrder = async () => {
-    const res = await fetch("http://localhost:3000/api/orders", {
+    const res = await fetch("https://collegecanteen-mgm-1.onrender.com/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -180,7 +180,7 @@ if (user.role === "admin") {
 
         <button
           onClick={async () => {
-            await fetch("http://localhost:3000/api/orders/confirm-payment", {
+            await fetch("https://collegecanteen-mgm-1.onrender.com/api/orders/confirm-payment", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -248,21 +248,21 @@ function AdminDashboard({ user, logoutUser }) {
 
   // ================= LOAD CANTEENS =================
   const loadCanteens = async () => {
-    const res = await fetch("http://localhost:3000/api/admin/canteens");
+    const res = await fetch("https://collegecanteen-mgm-1.onrender.com/api/admin/canteens");
     setCanteens(await res.json());
   };
 
   // ================= LOAD MENU =================
   const loadMenu = async (canteenId) => {
     const res = await fetch(
-      `http://localhost:3000/api/admin/menu/${canteenId}`
+      `https://collegecanteen-mgm-1.onrender.com/api/admin/menu/${canteenId}`
     );
     setMenu(await res.json());
   };
 
   // ================= LOAD ORDERS =================
   const loadOrders = async () => {
-    const res = await fetch("http://localhost:3000/api/admin/orders");
+    const res = await fetch("https://collegecanteen-mgm-1.onrender.com/api/admin/orders");
     setOrders(await res.json());
   };
 
@@ -299,7 +299,7 @@ function AdminDashboard({ user, logoutUser }) {
           <button
             onClick={async () => {
               await fetch(
-                `http://localhost:3000/api/admin/canteens/${c.id}`,
+                `https://collegecanteen-mgm-1.onrender.com/api/admin/canteens/${c.id}`,
                 {
                   method: "PUT",
                   headers: { "Content-Type": "application/json" },
@@ -343,7 +343,7 @@ function AdminDashboard({ user, logoutUser }) {
           <button
             onClick={async () => {
               await fetch(
-                `http://localhost:3000/api/admin/menu/${item.id}`,
+                `https://collegecanteen-mgm-1.onrender.com/api/admin/menu/${item.id}`,
                 {
                   method: "PUT",
                   headers: { "Content-Type": "application/json" },
@@ -362,7 +362,7 @@ function AdminDashboard({ user, logoutUser }) {
           <button
             onClick={async () => {
               await fetch(
-                `http://localhost:3000/api/admin/menu/${item.id}`,
+                `https://collegecanteen-mgm-1.onrender.com/api/admin/menu/${item.id}`,
                 {
                   method: "PUT",
                   headers: { "Content-Type": "application/json" },
